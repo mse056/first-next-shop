@@ -1,8 +1,9 @@
 import Container from "@/components/container";
-import { IProductItem } from "@/components/productItem";
+import { IProductItem } from "@/app/store/components/productItem";
+import CartButtons from "../../../components/cartButtons";
 
 interface IProductDetails {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: number }>;
 }
 
 async function ProductDetails({ params }: IProductDetails) {
@@ -21,14 +22,10 @@ async function ProductDetails({ params }: IProductDetails) {
             قیمت:
             <span>{data.price}$</span>
           </p>
-          <div className="mt-4">
-            <button className="px-4 py-2 rounded bg-sky-500">+</button>
-            <span className="mx-4">3</span>
-            <button className="px-4 py-2 rounded bg-red-500">-</button>
-          </div>
+          <CartButtons id={id} />
         </div>
         <div className="col-span-3">
-          <img src={data.image} alt="" />
+          <img src={data.image} alt={data.title} />
         </div>
       </div>
     </Container>
