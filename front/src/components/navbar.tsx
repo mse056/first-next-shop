@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "./container";
+import { useCartContext } from "@/context/cartContext";
 
 function Navbar() {
   const pathName = usePathname();
+  const {cartTotalQuantity} = useCartContext();
 
   const navLinks = [
     {
@@ -43,6 +45,9 @@ function Navbar() {
             })}
           </div>
           <div>
+            <span className="px-2 py-1 bg-sky-500 text-white rounded-full">
+              {cartTotalQuantity}
+            </span>
             <Link
               href={"/cart"}
               className={`mr-4 ${pathName === "/cart" ? "text-sky-500" : ""}`}
