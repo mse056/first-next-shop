@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type TCartContextProviderProps = {
   children: React.ReactNode;
@@ -27,9 +27,18 @@ export const useCartContext = () => {
 };
 
 export function CartContextProvider({ children }: TCartContextProviderProps) {
-  const [cartItems, setCartItems] = useState<TCartItems[]>([]);
+  const [cartItems, setCartItems] = useState<TCartItems[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("cartItems");
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
 
-  const cartTotalQuantity = cartItems.reduce((totalQty, item) => totalQty + item.quantity, 0);
+  const cartTotalQuantity = cartItems.reduce(
+    (totalQty, item) => totalQty + item.quantity,
+    0,
+  );
 
   const handleAddToCart = (id: number) => {
     setCartItems((currentItems) => {
@@ -65,8 +74,14 @@ export function CartContextProvider({ children }: TCartContextProviderProps) {
   };
 
   const handleRemoveFromCart = (id: number) => {
-    setCartItems((currentItems) => currentItems.filter((item) => item.id !== id));
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.id !== id),
+    );
   };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartContext.Provider
