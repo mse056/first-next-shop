@@ -9,9 +9,9 @@ function Cart() {
 
       <CartItem />
       <div className="border shadow-md text-right p-4">
-        <h3>قیمت کل:<span>77$</span></h3>
-        <h3>سود شما از این خرید:<span>77$</span></h3>
-        <h3>قیمت نهایی:<span>77$</span></h3>
+        <h3 className="rtl">قیمت کل:<span>77$</span></h3>
+        <h3 className="rtl">سود شما از این خرید:<span>77$</span></h3>
+        <h3 className="rtl">قیمت نهایی:<span>77$</span></h3>
         <div>
           <button className="bg-sky-600 text-white px-4 py-1 rounded">اعمال</button>
           <input className="rtl text-right border" type="text" placeholder="کد تخفیف را وارد کنید" />
