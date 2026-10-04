@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MainLayout from "@/components/mianLayout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -8,8 +9,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   );
 }
