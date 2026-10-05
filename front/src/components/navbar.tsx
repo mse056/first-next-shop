@@ -6,7 +6,7 @@ import { useCartContext } from "@/context/cartContext";
 
 function Navbar() {
   const pathName = usePathname();
-  const {cartTotalQuantity} = useCartContext();
+  const { cartTotalQuantity } = useCartContext();
 
   const navLinks = [
     {
@@ -18,8 +18,12 @@ function Navbar() {
       title: "فروشگاه ",
     },
     {
+      href: "/dashboard",
+      title: " پنل ",
+    },
+    {
       href: "/about",
-      title: "درباره ما ",
+      title: " درباره ما ",
     },
     {
       href: "/contact",
